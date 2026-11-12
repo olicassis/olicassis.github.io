@@ -1,14 +1,39 @@
 ---
-interface Props { kind: "course" | "certification" | "book"; title: string; by?: string; value: number; url?: string }
+interface Props {
+  kind: 'course' | 'certification' | 'book';
+  title: string;
+  by?: string;
+  value: number;
+  url?: string;
+}
 const { kind, title, by, value, url } = Astro.props;
 const pct = Math.max(0, Math.min(100, value));
-const status = pct >= 100 ? "done" : pct > 0 ? "in progress" : "queued";
+const status = pct >= 100 ? 'done' : pct > 0 ? 'in progress' : 'queued';
 ---
-<li class:list={["oc-prog", `oc-prog-${kind}`]}>
-  <div class="oc-prog-head"><span class="oc-prog-kind">{kind}</span><span class="oc-prog-status">{status}</span></div>
-  <p class="oc-prog-title">{url ? <a href={url} target="_blank" rel="noopener">{title}</a> : title}</p>
+
+<li class:list={['oc-prog', `oc-prog-${kind}`]}>
+  <div class="oc-prog-head">
+    <span class="oc-prog-kind">{kind}</span>
+    <span class="oc-prog-status">{status}</span>
+  </div>
+  <p class="oc-prog-title">
+    {url ? (
+      <a href={url} target="_blank" rel="noopener">
+        {title}
+      </a>
+    ) : (
+      title
+    )}
+  </p>
   {by && <p class="oc-prog-by">{by}</p>}
-  <div class="oc-prog-track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow={pct} aria-label={`${title} progress`}>
+  <div
+    class="oc-prog-track"
+    role="progressbar"
+    aria-valuemin="0"
+    aria-valuemax="100"
+    aria-valuenow={pct}
+    aria-label={`${title} progress`}
+  >
     <span class="oc-prog-fill" style={`width:${pct}%`}></span>
   </div>
   <span class="oc-prog-pct">{pct}%</span>

@@ -1,5 +1,10 @@
 ---
-interface Props { tone?: "leaf" | "straw" }
+interface Props {
+  tone?: 'leaf' | 'straw';
+}
 const { tone } = Astro.props;
 ---
-<span class:list={["oc-tag", tone && `oc-tag-${tone}`]}><slot /></span>
+
+<span class:list={['oc-tag', tone && `oc-tag-${tone}`]}>
+  <slot />
+</span>
