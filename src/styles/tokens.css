@@ -1,0 +1,80 @@
+/* olicassis — generated from design/tokens.json by scripts/build-tokens.mjs. Do not edit by hand. */
+:root {
+  --surface: #f6f9e4;
+  --surface-raised: #fdfef6;
+  --husk: #e6efac;
+  --ink: #141a0c;
+  --ink-muted: #465230;
+  --link: #4f6b1c;
+  --leaf: #78c30e;
+  --on-accent: #141a0c;
+  --olive: #577229;
+  --straw: #b77d4f;
+  --straw-deep: #7a4e2a;
+  --peach: #ffd196;
+  --panel-shadow: #141a0c;
+  --border: #141a0c;
+  --hairline: #c9d48f;
+  --focus: #141a0c;
+  --shadow-panel: 4px 4px 0 #141a0c;
+  --shadow-pop: 6px 6px 0 #141a0c;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --radius-0: 0;
+  --radius-s: 4px;
+  --radius-full: 9999px;
+  --font-display: "Dela Gothic One", "Arial Black", system-ui, sans-serif;
+  --font-sans: "IBM Plex Sans", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --surface: #10140a;
+    --surface-raised: #192010;
+    --husk: #242e15;
+    --ink: #eef3d2;
+    --ink-muted: #b4c094;
+    --link: #9fd04a;
+    --leaf: #8bd61a;
+    --on-accent: #10140a;
+    --olive: #678831;
+    --straw: #d39a6a;
+    --straw-deep: #e0ad80;
+    --peach: #ffd196;
+    --panel-shadow: #678831;
+    --border: #d9e4a8;
+    --hairline: #34401f;
+    --focus: #eef3d2;
+    --shadow-panel: 4px 4px 0 #678831;
+    --shadow-pop: 6px 6px 0 #678831;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --surface: #10140a;
+  --surface-raised: #192010;
+  --husk: #242e15;
+  --ink: #eef3d2;
+  --ink-muted: #b4c094;
+  --link: #9fd04a;
+  --leaf: #8bd61a;
+  --on-accent: #10140a;
+  --olive: #678831;
+  --straw: #d39a6a;
+  --straw-deep: #e0ad80;
+  --peach: #ffd196;
+  --panel-shadow: #678831;
+  --border: #d9e4a8;
+  --hairline: #34401f;
+  --focus: #eef3d2;
+  --shadow-panel: 4px 4px 0 #678831;
+  --shadow-pop: 6px 6px 0 #678831;
+  color-scheme: dark;
+}

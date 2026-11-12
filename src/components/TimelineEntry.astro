@@ -1,0 +1,15 @@
+---
+interface Props { kind: "work" | "study"; title: string; org: string; start: string; end?: string; location?: string }
+const { kind, title, org, start, end, location } = Astro.props;
+const current = !end;
+---
+<li class:list={["oc-tl", `oc-tl-${kind}`, current && "oc-tl-current"]}>
+  <span class="oc-tl-dot" aria-hidden="true"></span>
+  <div class="oc-tl-meta">
+    <span class="oc-tl-kind">{kind === "study" ? "academic" : "professional"}</span>
+    <span class="oc-tl-dates">{start} — {end ?? "now"}</span>
+  </div>
+  <h3 class="oc-tl-title">{title}</h3>
+  <p class="oc-tl-org">{org}{location && ` · ${location}`}</p>
+  <div class="oc-tl-body"><slot /></div>
+</li>

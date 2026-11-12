@@ -1,0 +1,19 @@
+---
+import { site } from "../site";
+const year = new Date().getFullYear();
+---
+<footer class="site-footer">
+  <div class="wrap site-footer-inner">
+    <p>© {year} {site.name} · <span class="mono">{site.handle}</span></p>
+    <ul class="row list-reset links">
+      <li><a href={site.linkedin} target="_blank" rel="noopener">linkedin ↗</a></li>
+      <li><a href={site.github} target="_blank" rel="noopener">github ↗</a></li>
+    </ul>
+  </div>
+</footer>
+<style>
+  .site-footer { border-top: 2px solid var(--border); margin-top: var(--space-16); }
+  .site-footer-inner { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--space-4); padding-block: var(--space-6); font: 500 13px/18px var(--font-mono); color: var(--ink-muted); }
+  .site-footer p { margin: 0; }
+  .links { list-style: none; gap: var(--space-4); }
+</style>
