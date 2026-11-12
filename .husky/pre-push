@@ -1,0 +1,1 @@
+node tooling/harness/bin/check-push-leaks.ts "$1"
