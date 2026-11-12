@@ -1,0 +1,10 @@
+---
+interface Props { eyebrow: string; title: string; lede?: string; level?: 1 | 2 }
+const { eyebrow, title, lede, level = 2 } = Astro.props;
+const H = level === 1 ? "h1" : "h2";
+---
+<header class="oc-section-header">
+  <p class="oc-eyebrow">// {eyebrow}</p>
+  <H class="oc-section-title">{title}</H>
+  {lede && <p class="oc-lede">{lede}</p>}
+</header>

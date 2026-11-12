@@ -1,0 +1,28 @@
+<button class="theme-toggle" type="button" id="theme-toggle" aria-label="Switch colour theme">
+  <span class="theme-toggle-label">theme: <span data-theme-name>auto</span></span>
+</button>
+<script is:inline>
+  (() => {
+    const order = ["auto", "light", "dark"];
+    const root = document.documentElement;
+    const btn = document.getElementById("theme-toggle");
+    const name = btn.querySelector("[data-theme-name]");
+    let current = "auto";
+    try { current = localStorage.getItem("theme") || "auto"; } catch {}
+    const apply = (t) => {
+      if (t === "auto") root.removeAttribute("data-theme"); else root.setAttribute("data-theme", t);
+      name.textContent = t;
+    };
+    apply(current);
+    btn.addEventListener("click", () => {
+      current = order[(order.indexOf(current) + 1) % order.length];
+      try { localStorage.setItem("theme", current); } catch {}
+      apply(current);
+    });
+  })();
+</script>
+<style>
+  .theme-toggle { font: 500 13px/18px var(--font-mono); color: var(--ink-muted); background: none; border: 0; padding: var(--space-2); cursor: pointer; }
+  .theme-toggle:hover { color: var(--ink); background: var(--husk); }
+  .theme-toggle:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+</style>
