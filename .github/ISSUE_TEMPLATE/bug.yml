@@ -1,0 +1,28 @@
+name: Bug
+description: Something on the site looks or works wrong.
+labels: [bug]
+body:
+  - type: input
+    id: page
+    attributes:
+      label: Page
+      description: The URL of the page.
+      placeholder: https://olicassis.github.io/projects/
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: What happens, and what you expected
+    validations:
+      required: true
+  - type: dropdown
+    id: theme
+    attributes:
+      label: Theme
+      options: [light, dark, both]
+  - type: input
+    id: device
+    attributes:
+      label: Browser and device
+      placeholder: Firefox 140, Android phone
