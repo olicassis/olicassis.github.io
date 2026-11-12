@@ -3,14 +3,42 @@
   "type": "module",
   "version": "0.1.0",
   "private": true,
+  "description": "Elias's portfolio (olicassis): career, projects, skills and a public learning log. Astro, deployed on GitHub Pages.",
+  "packageManager": "pnpm@10.28.0",
+  "engines": {
+    "node": ">=22.18.0"
+  },
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
     "check": "astro check",
-    "tokens": "node scripts/build-tokens.mjs"
+    "test": "vitest run",
+    "tokens": "node scripts/build-tokens.mjs",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "harness:check": "node tooling/harness/bin/check-context-budget.ts",
+    "deps:check": "node tooling/harness/bin/check-pinned-versions.ts",
+    "prepare": "husky && git config commit.template .gitmessage || true"
   },
   "dependencies": {
     "astro": "7.4.4"
+  },
+  "devDependencies": {
+    "@astrojs/check": "0.9.12",
+    "@commitlint/cli": "21.2.4",
+    "@commitlint/config-conventional": "21.2.4",
+    "@types/node": "26.6.6",
+    "husky": "9.1.7",
+    "prettier": "3.9.10",
+    "prettier-plugin-astro": "1.1.2",
+    "typescript": "6.0.3",
+    "vitest": "5.1.0"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild",
+      "sharp"
+    ]
   }
 }
