@@ -1,7 +1,7 @@
 {
   "name": "olicassis.github.io",
   "type": "module",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "private": true,
   "description": "Elias's portfolio (olicassis): career, projects, skills and a public learning log. Astro, deployed on GitHub Pages.",
   "packageManager": "pnpm@10.28.0",
