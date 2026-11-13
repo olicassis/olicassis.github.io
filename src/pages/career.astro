@@ -1,34 +1,72 @@
 ---
-import { getCollection, render } from "astro:content";
-import Base from "../layouts/Base.astro";
-import SectionHeader from "../components/SectionHeader.astro";
-import TimelineEntry from "../components/TimelineEntry.astro";
+import { getCollection, render } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+import TimelineEntry from '../components/TimelineEntry.astro';
 
-const byStartDesc = (a: { data: { start: string } }, b: { data: { start: string } }) => b.data.start.localeCompare(a.data.start);
-const all = (await getCollection("career", (e) => !e.data.draft)).sort(byStartDesc);
-const entries = await Promise.all(all.map(async (e) => ({ e, Content: (await render(e)).Content })));
-const work = entries.filter(({ e }) => e.data.kind === "work");
-const study = entries.filter(({ e }) => e.data.kind === "study");
+const byStartDesc = (a: { data: { start: string } }, b: { data: { start: string } }) =>
+  b.data.start.localeCompare(a.data.start);
+const all = (await getCollection('career', (e) => !e.data.draft)).sort(byStartDesc);
+const entries = await Promise.all(
+  all.map(async (e) => ({ e, Content: (await render(e)).Content })),
+);
+const work = entries.filter(({ e }) => e.data.kind === 'work');
+const study = entries.filter(({ e }) => e.data.kind === 'study');
 ---
+
 <Base title="Career" description="My professional and academic path.">
   <section class="wrap section">
-    <SectionHeader level={1} eyebrow="career" title="Career" lede="Where I have worked and studied, newest first." />
+    <SectionHeader
+      level={1}
+      eyebrow="career"
+      title="Career"
+      lede="Where I have worked and studied, newest first."
+    />
     <div class="cols">
       <div>
         <h2 class="col-title">Professional</h2>
-        <ol class="list-reset">{work.map(({ e, Content }) => <TimelineEntry {...e.data}><Content /></TimelineEntry>)}</ol>
+        <ol class="list-reset">
+          {work.map(({ e, Content }) => (
+            <TimelineEntry {...e.data}>
+              <Content />
+            </TimelineEntry>
+          ))}
+        </ol>
       </div>
       <div>
         <h2 class="col-title">Academic</h2>
-        <ol class="list-reset">{study.map(({ e, Content }) => <TimelineEntry {...e.data}><Content /></TimelineEntry>)}</ol>
+        <ol class="list-reset">
+          {study.map(({ e, Content }) => (
+            <TimelineEntry {...e.data}>
+              <Content />
+            </TimelineEntry>
+          ))}
+        </ol>
       </div>
     </div>
   </section>
 </Base>
 <style>
-  .cols { display: grid; gap: var(--space-12); }
-  @media (min-width: 820px) { .cols { grid-template-columns: 1fr 1fr; } }
-  .cols > div { min-width: 0; }
-  .col-title { margin: 0 0 var(--space-6); font: 500 13px/16px var(--font-mono); letter-spacing: .06em; text-transform: uppercase; color: var(--ink-muted); }
-  .cols :global(.oc-tl-body p) { margin: 0; }
+  .cols {
+    display: grid;
+    gap: var(--space-12);
+  }
+  @media (min-width: 820px) {
+    .cols {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  .cols > div {
+    min-width: 0;
+  }
+  .col-title {
+    margin: 0 0 var(--space-6);
+    font: 500 13px/16px var(--font-mono);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+  }
+  .cols :global(.oc-tl-body p) {
+    margin: 0;
+  }
 </style>

@@ -1,0 +1,13 @@
+
+
+# type(scope): emoji subject            (72 characters at most, imperative, no full stop)
+#
+# Types and emojis (the emoji goes right after the colon):
+#   feat ✨  fix 🐛  perf ⚡️  refactor ♻️  test ✅  docs 📝
+#   style 🎨  build 📦  ci 👷  chore 🔧  revert ⏪   breaking change: type! and 💥
+# Scopes: content ui design pages seo deps ci harness release
+#
+# Body: why the change, not what (the diff shows what).
+# Footers: Refs: #12    BREAKING CHANGE: what breaks and how to migrate
+#
+# Example: feat(pages): ✨ add the projects page

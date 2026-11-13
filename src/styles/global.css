@@ -1,18 +1,38 @@
-@import "./tokens.css";
-@import "./components.css";
+@import './tokens.css';
+@import './components.css';
 
-*, *::before, *::after { box-sizing: border-box; }
-html { -webkit-text-size-adjust: 100%; }
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+html {
+  -webkit-text-size-adjust: 100%;
+}
 body {
   margin: 0;
   background: var(--surface);
   color: var(--ink);
   font: 400 17px/28px var(--font-sans);
 }
-img { max-width: 100%; height: auto; display: block; }
-a { color: var(--link); text-underline-offset: 4px; }
-a:focus-visible { outline: 2px solid var(--focus); outline-offset: 4px; }
-h1, h2, h3 { text-wrap: balance; }
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+a {
+  color: var(--link);
+  text-underline-offset: 4px;
+}
+a:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 4px;
+}
+h1,
+h2,
+h3 {
+  text-wrap: balance;
+}
 
 .wrap {
   width: 100%;
@@ -22,24 +42,73 @@ h1, h2, h3 { text-wrap: balance; }
   padding-right: max(var(--space-4), env(safe-area-inset-right, 0px));
 }
 @media (min-width: 720px) {
-  .wrap { padding-left: max(var(--space-8), env(safe-area-inset-left, 0px)); padding-right: max(var(--space-8), env(safe-area-inset-right, 0px)); }
+  .wrap {
+    padding-left: max(var(--space-8), env(safe-area-inset-left, 0px));
+    padding-right: max(var(--space-8), env(safe-area-inset-right, 0px));
+  }
 }
-.section { display: grid; gap: var(--space-8); padding-block: var(--space-12); }
-@media (min-width: 720px) { .section { padding-block: var(--space-16); } }
-.band { background: var(--husk); border-block: 2px solid var(--border); }
-.grid { display: grid; gap: var(--space-6); grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); }
-.row { display: flex; flex-wrap: wrap; gap: var(--space-2); }
-.prose { max-width: 65ch; }
-.prose p { margin: 0 0 var(--space-4); }
-.list-reset { margin: 0; padding: 0; }
+.section {
+  display: grid;
+  gap: var(--space-8);
+  padding-block: var(--space-12);
+}
+@media (min-width: 720px) {
+  .section {
+    padding-block: var(--space-16);
+  }
+}
+.band {
+  background: var(--husk);
+  border-block: 2px solid var(--border);
+}
+.grid {
+  display: grid;
+  gap: var(--space-6);
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
+}
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+.prose {
+  max-width: 65ch;
+}
+.prose p {
+  margin: 0 0 var(--space-4);
+}
+.list-reset {
+  margin: 0;
+  padding: 0;
+}
 
 /* Screentone: ink dots at a space-4 pitch. One patterned area per page. */
 .screentone {
   background-image: radial-gradient(var(--ink) 1.5px, transparent 1.6px);
   background-size: var(--space-4) var(--space-4);
-  opacity: .18;
+  opacity: 0.18;
 }
 
-.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
-.sr-only:focus { position: fixed; top: var(--space-2); left: var(--space-2); width: auto; height: auto; clip: auto; padding: var(--space-2) var(--space-4); background: var(--leaf); color: var(--on-accent); z-index: 10; }
-.mono { font-family: var(--font-mono); }
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+.sr-only:focus {
+  position: fixed;
+  top: var(--space-2);
+  left: var(--space-2);
+  width: auto;
+  height: auto;
+  clip: auto;
+  padding: var(--space-2) var(--space-4);
+  background: var(--leaf);
+  color: var(--on-accent);
+  z-index: 10;
+}
+.mono {
+  font-family: var(--font-mono);
+}

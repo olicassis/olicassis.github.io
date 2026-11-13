@@ -1,9 +1,9 @@
-import { defineCollection } from "astro:content";
-import { glob } from "astro/loaders";
-import { z } from "astro/zod";
+import { defineCollection } from 'astro:content';
+import { glob } from 'astro/loaders';
+import { z } from 'astro/zod';
 
 const projects = defineCollection({
-  loader: glob({ pattern: "**/*.md", base: "./src/content/projects" }),
+  loader: glob({ pattern: '**/*.md', base: './src/content/projects' }),
   schema: z.object({
     title: z.string(),
     summary: z.string(),
@@ -17,9 +17,9 @@ const projects = defineCollection({
 });
 
 const career = defineCollection({
-  loader: glob({ pattern: "**/*.md", base: "./src/content/career" }),
+  loader: glob({ pattern: '**/*.md', base: './src/content/career' }),
   schema: z.object({
-    kind: z.enum(["work", "study"]),
+    kind: z.enum(['work', 'study']),
     title: z.string(),
     org: z.string(),
     start: z.string(), // "2021" or "2021-03"
@@ -30,9 +30,9 @@ const career = defineCollection({
 });
 
 const progress = defineCollection({
-  loader: glob({ pattern: "**/*.md", base: "./src/content/progress" }),
+  loader: glob({ pattern: '**/*.md', base: './src/content/progress' }),
   schema: z.object({
-    kind: z.enum(["course", "certification", "book"]),
+    kind: z.enum(['course', 'certification', 'book']),
     title: z.string(),
     by: z.string().optional(),
     value: z.number().min(0).max(100),

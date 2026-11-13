@@ -1,9 +1,13 @@
 ---
-interface Props { href?: string; label?: string }
+interface Props {
+  href?: string;
+  label?: string;
+}
 const { href, label } = Astro.props;
-const Tag = href ? "a" : "article";
+const Tag = href ? 'a' : 'article';
 ---
-<Tag class:list={["oc-panel", href && "oc-panel-link"]} href={href}>
+
+<Tag class:list={['oc-panel', href && 'oc-panel-link']} href={href}>
   {label && <span class="oc-panel-label">{label}</span>}
   <slot />
 </Tag>

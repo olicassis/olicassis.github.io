@@ -1,7 +1,17 @@
 ---
-interface Props { href: string; variant?: "primary" | "secondary" | "ghost"; external?: boolean }
-const { href, variant = "primary", external = false } = Astro.props;
+interface Props {
+  href: string;
+  variant?: 'primary' | 'secondary' | 'ghost';
+  external?: boolean;
+}
+const { href, variant = 'primary', external = false } = Astro.props;
 ---
-<a class:list={["oc-btn", `oc-btn-${variant}`]} href={href} {...(external ? { target: "_blank", rel: "noopener" } : {})}>
-  <slot />{external && <span aria-hidden="true"> ↗</span>}
+
+<a
+  class:list={['oc-btn', `oc-btn-${variant}`]}
+  href={href}
+  {...(external ? { target: '_blank', rel: 'noopener' } : {})}
+>
+  <slot />
+  {external && <span aria-hidden="true"> ↗</span>}
 </a>
