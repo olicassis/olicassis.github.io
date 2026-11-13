@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.0](https://github.com/olicassis/olicassis.github.io/compare/v0.3.0...v0.4.0) (2026-11-13)
+
+
+### ✨ Features
+
+* **content:** ✨ rewrite the entry copy for the single page ([#6](https://github.com/olicassis/olicassis.github.io/issues/6)) ([0c81029](https://github.com/olicassis/olicassis.github.io/commit/0c8102985a26554c9599d0d4e3172d4f0483af33))
+
 ## [0.3.0](https://github.com/olicassis/olicassis.github.io/compare/v0.2.0...v0.3.0) (2026-11-13)
 
 
