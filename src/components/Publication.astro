@@ -30,6 +30,7 @@ const { title, authors, venue, year, url } = Astro.props;
     {url && (
       <span class="oc-card-cta">
         read the paper <span aria-hidden="true">↗</span>
+        <span class="sr-only">(opens in a new tab)</span>
       </span>
     )}
   </Card>

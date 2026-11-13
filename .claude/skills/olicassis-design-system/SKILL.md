@@ -74,6 +74,6 @@ Tokens: `design/tokens.json` → `pnpm tokens` → `src/styles/tokens.css`. Comp
 ## Do not
 
 - Use a raw colour, size, radius, blur, duration or shadow outside `src/styles/`.
-- Use `leaf` as a text colour on light grounds (use `leaf-text`) or for more than one primary button per view.
+- Use `leaf` as a text colour on light grounds (use `leaf-text`) or for more than one primary button per page.
 - Put body text straight on a gradient or on the ambient lights.
 - Animate without a `prefers-reduced-motion` guard.

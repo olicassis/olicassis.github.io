@@ -1,6 +1,6 @@
 # olicassis.github.io
 
-Elias's portfolio (olicassis): career, projects, skills and a public log of courses and books. Astro 7, static output, deployed on GitHub Pages at https://olicassis.github.io.
+Elias's portfolio (olicassis): one page with career, projects, papers, skills and a public log of courses and books. Astro 7, static output, deployed on GitHub Pages at https://olicassis.github.io.
 
 ## Rules that are never broken
 
@@ -27,16 +27,16 @@ Elias's portfolio (olicassis): career, projects, skills and a public log of cour
 
 ## Where things are
 
-| Path                     | What                                                                 |
-| ------------------------ | -------------------------------------------------------------------- |
-| `src/pages/`             | One file per route: about (`index`), career, projects, progress, 404 |
-| `src/content/`           | Markdown entries; schemas in `src/content.config.ts`                 |
-| `src/components/`        | Design-system components (`Panel`, `Tag`, `Button`, ...)             |
-| `src/layouts/Base.astro` | Page shell: head, fonts, header, footer, theme script                |
-| `src/styles/`            | `tokens.css` (generated), `components.css`, `global.css`             |
-| `src/site.ts`            | Name, role, tagline, links, navigation                               |
-| `design/tokens.json`     | Design tokens from the olicassis design system                       |
-| `tooling/harness/`       | Hook scripts and repo checks (tested)                                |
+| Path                     | What                                                             |
+| ------------------------ | ---------------------------------------------------------------- |
+| `src/pages/`             | One page (`index`, anchor sections) and 404; old routes redirect |
+| `src/content/`           | Markdown entries; schemas in `src/content.config.ts`             |
+| `src/components/`        | Design-system components (`Card`, `Tag`, `Button`, ...)          |
+| `src/layouts/Base.astro` | Page shell: head, fonts, header, footer, theme script            |
+| `src/styles/`            | `tokens.css` (generated), `components.css`, `global.css`         |
+| `src/site.ts`            | Name, role, tagline, links, navigation                           |
+| `design/tokens.json`     | Design tokens from the olicassis design system                   |
+| `tooling/harness/`       | Hook scripts and repo checks (tested)                            |
 
 ## Astro
 

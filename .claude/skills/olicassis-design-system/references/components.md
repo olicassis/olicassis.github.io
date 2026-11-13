@@ -17,7 +17,7 @@ A pill link. `primary` is the leaf button; `secondary` (the default) is glass.
 
 **Provide:** `href`, `children` (sentence case, a verb first where it fits), `variant`, `external`.
 
-- One `primary` per view. The component adds `→`, or `↗` when `external`.
+- One `primary` per page: the hero's main call to action. The component adds `→`, or `↗` and a hidden "(opens in a new tab)" when `external`.
 
 ## Tag
 

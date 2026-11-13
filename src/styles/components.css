@@ -96,6 +96,7 @@
   color: var(--ink);
 }
 .oc-text {
+  max-width: 62ch;
   font: 400 15px/1.55 var(--font-sans);
   color: var(--ink-muted);
 }
@@ -302,6 +303,7 @@
 }
 .oc-learn-fill {
   display: block;
+  width: var(--pct, 0%);
   height: 100%;
   background: var(--leaf);
   border-radius: var(--radius-full);

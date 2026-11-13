@@ -58,12 +58,13 @@ const cta = kind === 'book' ? 'about the book' : 'see certificate';
           aria-valuenow={pct}
           aria-label={`${title}: ${pct}% read`}
         >
-          <span class="oc-learn-fill" style={`width:${pct}%`}></span>
+          <span class="oc-learn-fill" style={`--pct:${pct}%`}></span>
         </span>
       )}
       {url && (
         <span class="oc-card-cta">
           {cta} <span aria-hidden="true">↗</span>
+          <span class="sr-only">(opens in a new tab)</span>
         </span>
       )}
     </span>

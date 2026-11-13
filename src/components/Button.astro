@@ -16,4 +16,5 @@ const { href, variant = 'secondary', external = false } = Astro.props;
   <span class="oc-btn-arrow" aria-hidden="true">
     {external ? '↗' : '→'}
   </span>
+  {external && <span class="sr-only">(opens in a new tab)</span>}
 </a>

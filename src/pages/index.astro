@@ -51,7 +51,7 @@ const facts = [
     href: '#experience',
   },
   { num: projects.length, label: 'public projects', href: '#projects' },
-  { num: publications.length, label: 'peer-reviewed papers', href: '#publications' },
+  { num: publications.length, label: 'published papers', href: '#publications' },
   { num: items.length, label: 'courses, certs and books', href: '#learning' },
 ];
 ---
@@ -182,12 +182,13 @@ const facts = [
     <ul class="grid-2 list-reset">
       {projects.map((p) => (
         <li>
-          <Card href={p.data.repo ?? p.data.url} external class="reveal">
+          <Card
+            href={p.data.repo ?? p.data.url}
+            external={!!(p.data.repo ?? p.data.url)}
+            class="reveal"
+          >
             <p class="oc-meta">
               <span>{p.data.year}</span>
-              <span class="oc-meta-end" aria-hidden="true">
-                repo ↗
-              </span>
             </p>
             <h3 class="oc-title oc-title-l">{p.data.title}</h3>
             <p class="oc-text">{p.data.summary}</p>
@@ -198,6 +199,12 @@ const facts = [
                 </li>
               ))}
             </ul>
+            {(p.data.repo ?? p.data.url) && (
+              <span class="oc-card-cta">
+                {p.data.repo ? 'view the repo' : 'visit the site'} <span aria-hidden="true">↗</span>
+                <span class="sr-only">(opens in a new tab)</span>
+              </span>
+            )}
           </Card>
         </li>
       ))}
@@ -207,7 +214,7 @@ const facts = [
   <section class="section wrap" id="publications">
     <SectionHeader
       eyebrow="Publications"
-      title="Peer-reviewed papers"
+      title="Published papers"
       lede="From my research at UFJF and Fundação CAEd. Each card opens the paper."
     />
     <ol class="grid-2 list-reset">
@@ -250,7 +257,7 @@ const facts = [
       <h2 class="oc-section-title">Say hello</h2>
       <p class="oc-lede">The best way to reach me for now is LinkedIn.</p>
       <div class="ctas">
-        <Button href={site.linkedin} variant="primary" external>
+        <Button href={site.linkedin} external>
           Message me on LinkedIn
         </Button>
         <Button href={site.github} external>
