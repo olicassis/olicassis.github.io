@@ -17,7 +17,7 @@ const { title, authors, venue, year, url } = Astro.props;
   <p class="oc-pub-title">
     {url ? (
       <a href={url} target="_blank" rel="noopener">
-        {title}
+        {title} ↗
       </a>
     ) : (
       title
