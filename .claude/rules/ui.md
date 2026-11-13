@@ -14,5 +14,5 @@ paths:
 - Check 360 px and desktop widths. No horizontal scroll.
 - Every control works with a keyboard, has an accessible name and shows the `focus` ring.
 - Use `astro:assets` (`<Image>`) for images, with alt text, `width` and `sizes`.
-- No client JavaScript by default. An inline script or a `client:*` island needs a comment that says why.
+- No client JavaScript by default. An inline script needs a comment that says why, and the page must work without it (principle III).
 - Before you finish: run the `design-reviewer` subagent on the changed pages and fix every must-fix finding.
