@@ -24,7 +24,7 @@ caller for them in your answer and review what you can.
 
 1. Tokens only: no raw colours, font sizes, radii, shadows, blurs or durations outside `src/styles/`. Values come from `var(--token)`.
 2. Surfaces: glass cards use `oc-glass`; no glass in glass; gradients only on decoration, never under body text.
-3. Colour roles: one `leaf` primary per view with `on-leaf` text; `leaf-text` for green text; `juice` for links and labels; `band-*` only on the contact band.
+3. Colour roles: one `leaf` primary per page with `on-leaf` text; `leaf-text` for green text; `juice` for links and labels; `band-*` only on the contact band.
 4. Type: Bricolage Grotesque only for the hero, section, project titles and numbers; metadata in JetBrains Mono; sentence-case buttons, lowercase tags and card links.
 5. Both themes: nothing breaks under `prefers-color-scheme: dark` or a `data-theme` override.
 6. Layout: mobile first; 360 px and desktop widths, no horizontal scroll, text under 65 characters wide.
