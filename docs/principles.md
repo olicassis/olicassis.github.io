@@ -12,7 +12,7 @@ Entries are Markdown files in `src/content/<collection>/`, checked by the schema
 
 ## III. Static and private
 
-The site is static HTML on GitHub Pages. No backend, no cookies, no analytics or tracking, no third-party scripts. Client JavaScript only where the page cannot work without it, such as the theme toggle.
+The site is static HTML on GitHub Pages. No backend, no cookies, no analytics or tracking, no third-party scripts. Client JavaScript is small, inline and commented: the theme toggle, or an enhancement such as the scroll-spy, without which the page still works.
 
 ## IV. Accessible in both themes
 
