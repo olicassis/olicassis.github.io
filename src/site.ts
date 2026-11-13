@@ -5,7 +5,7 @@ export const site = {
   handle: 'olicassis',
   role: 'Back-end developer',
   tagline:
-    'I build back-end systems, study computer science in public, and keep a log of what I learn.',
+    'I build Node.js and TypeScript systems on AWS at FDTE. Before that, I worked on speech recognition and search research, and published 6 papers.',
   linkedin: 'https://www.linkedin.com/in/olicassis/',
   github: 'https://github.com/olicassis',
 };

@@ -7,4 +7,6 @@ end: '2022-12'
 location: 'Juiz de Fora'
 ---
 
-I built automatic speech recognition systems and automated large-scale reading fluency assessment. I used and fine-tuned neural speech recognition models and analysed the data in Python.
+- Built speech recognition pipelines that score children's oral reading in large-scale fluency assessments.
+- Fine-tuned and evaluated neural speech recognition models in PyTorch on recorded reading tasks.
+- Automated the classification of pseudo-word reading audio, published as first author at SBIE 2022.

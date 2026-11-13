@@ -1,10 +1,10 @@
 ---
 title: 'Gerador de Pseudo Palavras'
-summary: 'A web app that picks Portuguese words by canonicity and stress, makes pseudo-words from their syllables and exports a test sheet.'
+summary: 'A tool that builds pseudo-word tests for reading fluency assessment. It filters a Portuguese word list by syllable structure and stress, recombines the syllables into pseudo-words, and exports the test to Excel.'
 tags: ['python', 'flask', 'sqlite', 'pandas']
 repo: 'https://github.com/olicassis/GeradorPseudoPalavras'
 featured: true
 year: 2020
 ---
 
-It supports reading fluency assessment, the same research line as my SBIE 2022 papers.
+It came out of the same research as my SBIE 2022 papers.

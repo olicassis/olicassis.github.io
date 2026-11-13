@@ -7,4 +7,4 @@ end: '2023-02'
 location: 'Juiz de Fora'
 ---
 
-My thesis is a framework to support experiments on cognitive biases in search systems. Advisor: Jairo Francisco de Souza.
+Thesis: a framework for experiments on cognitive biases in search systems. Advisor: Jairo Francisco de Souza.
