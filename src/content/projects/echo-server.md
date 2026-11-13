@@ -4,6 +4,7 @@ summary: 'A multithreaded TCP echo client and server with a documented connectio
 tags: ['python', 'sockets', 'networking']
 repo: 'https://github.com/olicassis/echo_server_rtp1'
 year: 2021
+draft: true
 ---
 
 I built it for the Computer Networks course at UFJF.

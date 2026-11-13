@@ -7,4 +7,4 @@ end: '2017-07'
 location: 'Juiz de Fora'
 ---
 
-In "Estudos Avançados em Linux" I studied GNU/Linux systems in depth and set up Apache, Squid and Samba servers for the campus.
+- Set up and ran Apache, Squid and Samba servers on GNU/Linux for the campus network.
