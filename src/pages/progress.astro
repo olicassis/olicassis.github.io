@@ -5,7 +5,10 @@ import SectionHeader from '../components/SectionHeader.astro';
 import ProgressItem from '../components/ProgressItem.astro';
 
 const items = (await getCollection('progress', (i) => !i.data.draft)).sort(
-  (a, b) => a.data.value - b.data.value || a.data.title.localeCompare(b.data.title),
+  (a, b) =>
+    a.data.value - b.data.value ||
+    (b.data.finished ?? '').localeCompare(a.data.finished ?? '') ||
+    a.data.title.localeCompare(b.data.title),
 );
 const learning = items.filter((i) => i.data.kind !== 'book');
 const books = items.filter((i) => i.data.kind === 'book');

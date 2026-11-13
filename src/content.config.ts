@@ -42,4 +42,16 @@ const progress = defineCollection({
   }),
 });
 
-export const collections = { projects, career, progress };
+const publications = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/publications' }),
+  schema: z.object({
+    title: z.string(),
+    authors: z.array(z.string()).min(1),
+    venue: z.string(),
+    year: z.number(),
+    url: z.string().url().optional(),
+    draft: z.boolean().default(false),
+  }),
+});
+
+export const collections = { projects, career, progress, publications };

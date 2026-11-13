@@ -13,8 +13,7 @@ const featured = (await getCollection('projects', (p) => !p.data.draft && p.data
   .sort((a, b) => b.data.year - a.data.year)
   .slice(0, 3);
 
-// Placeholder skills. Replace with your own.
-const skills = ['typescript', 'python', 'astro', 'sql', 'git', 'linux'];
+const skills = ['python', 'typescript', 'node.js', 'docker', 'aws', 'pytorch', 'linux', 'git'];
 ---
 
 <Base>
@@ -53,12 +52,17 @@ const skills = ['typescript', 'python', 'astro', 'sql', 'git', 'linux'];
     <div class="about">
       <div class="prose">
         <p>
-          Placeholder. A short paragraph about who you are, what you work on today and what drives
-          you.
+          I'm {site.fullName}, a back-end developer at FDTE. I have worked there remotely since
+          2023. I studied Computer Science at UFJF, in Juiz de Fora, Brazil.
         </p>
         <p>
-          Placeholder. A second paragraph about how you learn: the courses, books and side projects
-          you log on this site.
+          Before that, I was an intern at Fundação CAEd. I worked on automatic speech recognition
+          for large-scale reading fluency assessment, with Python and PyTorch. At university I also
+          worked on machine learning and information retrieval projects.
+        </p>
+        <p>
+          Now I study cloud and containers (AWS, Docker) and software design. I log the courses and
+          books on the progress page.
         </p>
       </div>
       <div>

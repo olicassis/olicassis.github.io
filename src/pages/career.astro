@@ -3,6 +3,7 @@ import { getCollection, render } from 'astro:content';
 import Base from '../layouts/Base.astro';
 import SectionHeader from '../components/SectionHeader.astro';
 import TimelineEntry from '../components/TimelineEntry.astro';
+import Publication from '../components/Publication.astro';
 
 const byStartDesc = (a: { data: { start: string } }, b: { data: { start: string } }) =>
   b.data.start.localeCompare(a.data.start);
@@ -12,6 +13,9 @@ const entries = await Promise.all(
 );
 const work = entries.filter(({ e }) => e.data.kind === 'work');
 const study = entries.filter(({ e }) => e.data.kind === 'study');
+const publications = (await getCollection('publications', (p) => !p.data.draft)).sort(
+  (a, b) => b.data.year - a.data.year || a.data.title.localeCompare(b.data.title),
+);
 ---
 
 <Base title="Career" description="My professional and academic path.">
@@ -45,6 +49,20 @@ const study = entries.filter(({ e }) => e.data.kind === 'study');
       </div>
     </div>
   </section>
+  {publications.length > 0 && (
+    <section class="wrap section" id="publications">
+      <SectionHeader
+        eyebrow="publications"
+        title="Publications"
+        lede="Papers from my research at UFJF and Fundação CAEd, newest first."
+      />
+      <ol class="list-reset">
+        {publications.map((p) => (
+          <Publication {...p.data} />
+        ))}
+      </ol>
+    </section>
+  )}
 </Base>
 <style>
   .cols {
