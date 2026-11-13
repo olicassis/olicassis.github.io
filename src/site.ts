@@ -10,9 +10,12 @@ export const site = {
   github: 'https://github.com/olicassis',
 };
 
+// One page: each item is a section id on the home page.
 export const nav = [
-  { href: '/', label: 'about' },
-  { href: '/career/', label: 'career' },
-  { href: '/projects/', label: 'projects' },
-  { href: '/progress/', label: 'progress' },
+  { id: 'about', label: 'about' },
+  { id: 'experience', label: 'experience' },
+  { id: 'projects', label: 'projects' },
+  { id: 'publications', label: 'papers' },
+  { id: 'learning', label: 'learning' },
+  { id: 'contact', label: 'contact' },
 ];

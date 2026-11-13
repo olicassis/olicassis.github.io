@@ -1,0 +1,29 @@
+---
+// The olicassis mark: three cassis berries on a stem, as on the portrait's necklace.
+// Colours come from tokens through the oc-berry-* classes in components.css.
+interface Props {
+  class?: string;
+}
+const { class: className } = Astro.props;
+let count = (globalThis as { __ocBerry?: number }).__ocBerry ?? 0;
+(globalThis as { __ocBerry?: number }).__ocBerry = ++count;
+const id = `oc-berry-${count}`;
+---
+
+<svg class:list={['oc-berry', className]} viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+  <defs>
+    <radialGradient id={id} cx="35%" cy="30%" r="70%">
+      <stop offset="0" class="oc-berry-hi"></stop>
+      <stop offset="0.5" class="oc-berry-flesh"></stop>
+      <stop offset="1" class="oc-berry-skin"></stop>
+    </radialGradient>
+  </defs>
+  <path class="oc-berry-stem" d="M16 2 C 16 6, 13 8, 12 10"></path>
+  <path class="oc-berry-leaf" d="M16 3 C 20 2, 24 4, 25 7 C 21 8, 18 6, 16 3 Z"></path>
+  <circle cx="10" cy="16" r="6" fill={`url(#${id})`}></circle>
+  <circle cx="21" cy="15" r="6" fill={`url(#${id})`}></circle>
+  <circle cx="15.5" cy="24.5" r="6" fill={`url(#${id})`}></circle>
+  <circle class="oc-berry-shine" cx="8.3" cy="14" r="1.4"></circle>
+  <circle class="oc-berry-shine" cx="19.3" cy="13" r="1.4"></circle>
+  <circle class="oc-berry-shine" cx="13.8" cy="22.5" r="1.4"></circle>
+</svg>

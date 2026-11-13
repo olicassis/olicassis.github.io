@@ -1,63 +1,61 @@
 # olicassis components
 
-Usage notes per component, copied from the olicassis design system. The code is in `src/components/`.
+Usage notes per component. The code is in `src/components/`, the styles in `src/styles/components.css` (`oc-` classes).
+
+## Card
+
+A glass card. With `href` the whole card is one link: it lifts on hover and shows the cursor light.
+
+**Provide:** `children`, optional `href`, `external` (opens in a new tab), and `class` (for example `reveal`).
+
+- Put a `.oc-meta` row, a `.oc-title` and `.oc-text` or `.oc-sub` inside. End a linked card with a `.oc-card-cta` line (`read the paper ↗`).
+- One link per card. Do not put buttons or other links inside a linked card.
 
 ## Button
 
-A square, outlined call to action with a hard manga-panel shadow; pass `href` to render a link.
+A pill link. `primary` is the leaf button; `secondary` (the default) is glass.
 
-**Provide:** `children` (short lowercase text, a verb first), `variant` (`primary` | `secondary` | `ghost`), and `href` for navigation or `onClick` for an action.
+**Provide:** `href`, `children` (sentence case, a verb first where it fits), `variant`, `external`.
 
-- Use one `primary` per view, for the main next step (for example "see projects").
-- Use `secondary` for outbound links such as LinkedIn; add `↗` when the link leaves the site.
-- Use `ghost` for inline "read more" links.
-- Don't round the corners or soften the shadow. Hover lifts by 2px, press flattens it.
-
-## Panel
-
-The manga panel: a square container with a 2px ink outline and a hard offset shadow, used for project cards and featured blocks.
-
-**Provide:** `children` (title, text, tags), optional `href` to make the whole panel a link, and optional `label` for a corner tab such as "featured".
-
-- Lay panels out in a grid with `space-6` gaps so their shadows never touch.
-- One `label` per grid at most.
-- Don't nest panels inside panels.
+- One `primary` per view. The component adds `→`, or `↗` when `external`.
 
 ## Tag
 
-A small mono label for skills, technologies and categories.
-
-**Provide:** `children` (one or two words, lowercase) and optionally `tone` (`leaf` for featured, `straw` for academic).
-
-- Default tone for skills and stacks; group several in a wrapping row with `space-2` gaps.
-- Keep tags lowercase, except proper names that need capitals.
-- Don't use tags as buttons.
+A mono pill chip for skills, stacks and states. `tone="leaf"` marks a live state (`now`, `reading`).
 
 ## SectionHeader
 
-The heading block that opens every section: a mono `// eyebrow`, a display title and an optional lede.
+Eyebrow (one word), display title and optional lede. It has the `reveal` motion.
 
-**Provide:** `eyebrow` (one lowercase word, the section's id such as `about`, `career`, `projects`, `progress`, `contact`), `title`, and optional `lede`.
-
-- The eyebrow is written as a code comment; the component adds the `// `.
-- Keep titles to one line on desktop.
+**Provide:** `eyebrow`, `title`, optional `lede`, `level` (1 on a page of its own, else 2).
 
 ## TimelineEntry
 
-One step on the career timeline, professional or academic, on a single ink line.
+A glass card on a stem, with a berry marker. The current entry (no `end`) gets a leaf berry and a `now` chip.
 
-**Provide:** `kind` (`work` or `study`), `dates` (for example `2021 — 2024` or `2024 — now`), `title`, `org`, optional `current`, and optional `children` for the description. Render entries inside an `<ol>`, newest first.
+**Provide:** `kind` (`work` or `study`), `title`, `org`, `start`, optional `end` and `location`, and the description as `children`. Render inside `<ol class="oc-tl">`, newest first.
 
-- Work entries get a square leaf marker; study entries a round straw marker, so the two read apart by shape as well as colour.
-- `current` adds a peach halo to the marker. Use it on one entry per kind at most.
-- Keep Portuguese names of universities and companies as they are.
+## Publication
 
-## ProgressItem
+A linked card for one paper. The owner's name (`site.fullName`) is bold in the author list.
 
-One course, certification or book with its progress, shown as a bar and a percentage.
+**Provide:** `title`, `authors`, `venue`, `year`, optional `url`. Render inside an `<ol>`.
 
-**Provide:** `kind` (`course` | `certification` | `book`), `title`, optional `by` (platform, school or author), and `value` from 0 to 100. Render items inside a `<ul>`.
+## LearnCard
 
-- Status reads from the value: 0 is "queued", 100 is "done", anything else "in progress". The word is always shown, so the bar is never the only signal.
-- Books use straw, courses and certifications use leaf.
-- Keep book titles in their original language.
+A course, certification or book. A row with a small tile on phones, a tile card from 720px.
+
+**Provide:** the progress entry (`kind`, `title`, `by`, `value`, `finished`, `url`, optional `image` and `imageAlt`).
+
+- With `image`, the tile shows the certificate, badge or cover (store it in `src/assets/learning/`). Without it, the tile shows the issuer's initials (the title's for a book).
+- Finished items show the `finished` date. Unfinished items show a leaf chip (`reading` for books, `in progress` otherwise) and a thin bar when `value` is above 0.
+
+## BerryMark
+
+The olicassis mark. Decorative (`aria-hidden`). Used in the header, the portrait orbit and the contact band.
+
+## Header, ThemeToggle, Footer
+
+- Header: a floating glass bar. On phones the section links are a strip that scrolls sideways; the scroll-spy keeps the active link in view.
+- ThemeToggle cycles `auto`, `light`, `dark` and stores the choice.
+- Footer: copyright, `back to top ↑` and the outbound links.

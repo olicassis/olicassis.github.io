@@ -1,0 +1,18 @@
+---
+// A glass card. With href it is one link that lifts and lights up under the cursor.
+interface Props {
+  href?: string;
+  external?: boolean;
+  class?: string;
+}
+const { href, external = false, class: className } = Astro.props;
+const Tag = href ? 'a' : 'div';
+---
+
+<Tag
+  class:list={['oc-glass', 'oc-card', href && 'oc-card-link', className]}
+  href={href}
+  {...(external ? { target: '_blank', rel: 'noopener' } : {})}
+>
+  <slot />
+</Tag>
