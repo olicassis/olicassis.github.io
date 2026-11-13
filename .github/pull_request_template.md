@@ -31,8 +31,8 @@
 
 ## Checklist
 
-- [ ] Tokens only: no raw colours, sizes, radii or shadows
-- [ ] Works with a keyboard; images have alt text
+- [ ] Tokens only: no raw colours, sizes, radii, shadows, blurs or durations
+- [ ] Works with a keyboard; images have alt text; motion stops under reduced motion
 - [ ] No invented facts about the owner; open questions are TODOs in drafts
 - [ ] The code-reviewer agent passed the branch; UI changes also passed the design-reviewer agent
 - [ ] Dependencies are exact versions, and new ones have the owner's approval

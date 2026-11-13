@@ -1,4 +1,7 @@
 ---
+import Card from './Card.astro';
+import { site } from '../site';
+
 interface Props {
   title: string;
   authors: string[];
@@ -9,19 +12,26 @@ interface Props {
 const { title, authors, venue, year, url } = Astro.props;
 ---
 
-<li class="oc-pub">
-  <p class="oc-pub-meta">
-    <span class="oc-pub-year">{year}</span>
-    <span class="oc-pub-venue">{venue}</span>
-  </p>
-  <p class="oc-pub-title">
-    {url ? (
-      <a href={url} target="_blank" rel="noopener">
-        {title} <span aria-hidden="true">↗</span>
-      </a>
-    ) : (
-      title
+<li>
+  <Card href={url} external={!!url} class="reveal">
+    <p class="oc-meta">
+      <span class="oc-meta-kind">{year}</span>
+      <span>{venue}</span>
+    </p>
+    <h3 class="oc-title">{title}</h3>
+    <p class="oc-sub">
+      {authors.map((a, i) => (
+        <>
+          {a === site.fullName ? <strong>{a}</strong> : a}
+          {i < authors.length - 1 && ', '}
+        </>
+      ))}
+    </p>
+    {url && (
+      <span class="oc-card-cta">
+        read the paper <span aria-hidden="true">↗</span>
+        <span class="sr-only">(opens in a new tab)</span>
+      </span>
     )}
-  </p>
-  <p class="oc-pub-authors">{authors.join(', ')}</p>
+  </Card>
 </li>

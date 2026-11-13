@@ -9,4 +9,5 @@ authors:
   ]
 venue: 'Simpósio Brasileiro de Informática na Educação (SBIE 2022)'
 year: 2022
+url: 'https://sol.sbc.org.br/index.php/sbie/article/view/22394'
 ---

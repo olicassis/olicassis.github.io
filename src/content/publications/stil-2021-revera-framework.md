@@ -9,4 +9,5 @@ authors:
   ]
 venue: 'Simpósio Brasileiro de Tecnologia da Informação e da Linguagem Humana (STIL 2021)'
 year: 2021
+url: 'https://doi.org/10.5753/stil.2021.17800'
 ---

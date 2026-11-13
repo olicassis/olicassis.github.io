@@ -25,13 +25,14 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonical} />
-    <meta name="theme-color" content="#f6f9e4" />
+    <meta name="theme-color" content="#f6f1f7" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#12081a" media="(prefers-color-scheme: dark)" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
     />
     <script is:inline>
       try {
@@ -44,10 +45,27 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <a class="sr-only" href="#main">
       Skip to content
     </a>
+    <div class="ambient" aria-hidden="true">
+      <i></i>
+      <i></i>
+      <i></i>
+    </div>
     <Header />
     <main id="main">
       <slot />
     </main>
     <Footer />
+    <script is:inline>
+      // Cursor light: moves the glow inside a linked card. Fine pointers only; decoration.
+      if (matchMedia('(pointer: fine)').matches) {
+        document.addEventListener('pointermove', (ev) => {
+          const card = ev.target instanceof Element && ev.target.closest('.oc-card-link');
+          if (!card) return;
+          const r = card.getBoundingClientRect();
+          card.style.setProperty('--mx', `${ev.clientX - r.left}px`);
+          card.style.setProperty('--my', `${ev.clientY - r.top}px`);
+        });
+      }
+    </script>
   </body>
 </html>

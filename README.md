@@ -18,12 +18,12 @@ pnpm build       # static site in dist/
 
 All content is Markdown with a small header block. Add a file to add an entry; set `draft: true` to hide one.
 
-| Section      | Folder                      | Fields                                                                                             |
-| ------------ | --------------------------- | -------------------------------------------------------------------------------------------------- |
-| Projects     | `src/content/projects/`     | `title`, `summary`, `tags`, `year`, `featured`, `repo`, `url`                                      |
-| Career       | `src/content/career/`       | `kind` (`work` or `study`), `title`, `org`, `start`, `end` (leave out for current), `location`     |
-| Progress     | `src/content/progress/`     | `kind` (`course`, `certification` or `book`), `title`, `by`, `value` (0 to 100), `finished`, `url` |
-| Publications | `src/content/publications/` | `title`, `authors`, `venue`, `year`, `url`                                                         |
+| Section      | Folder                      | Fields                                                                                                                  |
+| ------------ | --------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| Projects     | `src/content/projects/`     | `title`, `summary`, `tags`, `year`, `featured`, `repo`, `url`                                                           |
+| Career       | `src/content/career/`       | `kind` (`work` or `study`), `title`, `org`, `start`, `end` (leave out for current), `location`                          |
+| Progress     | `src/content/progress/`     | `kind` (`course`, `certification` or `book`), `title`, `by`, `value` (0 to 100), `finished`, `url`, `image`, `imageAlt` |
+| Publications | `src/content/publications/` | `title`, `authors`, `venue`, `year`, `url`                                                                              |
 
 Name, role, tagline and the LinkedIn link live in `src/site.ts`. The About text and skills are in `src/pages/index.astro`.
 

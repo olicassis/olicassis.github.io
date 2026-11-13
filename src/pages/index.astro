@@ -1,213 +1,302 @@
 ---
 import { Image } from 'astro:assets';
-import { getCollection } from 'astro:content';
+import { getCollection, render } from 'astro:content';
 import Base from '../layouts/Base.astro';
+import BerryMark from '../components/BerryMark.astro';
 import Button from '../components/Button.astro';
-import Panel from '../components/Panel.astro';
-import Tag from '../components/Tag.astro';
+import Card from '../components/Card.astro';
+import LearnCard from '../components/LearnCard.astro';
+import Publication from '../components/Publication.astro';
 import SectionHeader from '../components/SectionHeader.astro';
+import Tag from '../components/Tag.astro';
+import TimelineEntry from '../components/TimelineEntry.astro';
 import portrait from '../assets/me_manga.jpg';
 import { site } from '../site';
 
-const featured = (await getCollection('projects', (p) => !p.data.draft && p.data.featured))
-  .sort((a, b) => b.data.year - a.data.year)
-  .slice(0, 3);
+const heroLede =
+  'I build Node.js and TypeScript systems on AWS at FDTE. Before that, I worked on speech recognition and search research, and published 6 papers.';
 
-const skills = ['python', 'typescript', 'node.js', 'docker', 'aws', 'pytorch', 'linux', 'git'];
+const skills = [
+  { group: 'Languages', items: ['TypeScript', 'JavaScript', 'Python'] },
+  {
+    group: 'Back end',
+    items: ['Node.js', 'NestJS', 'PostgreSQL', 'DynamoDB', 'Elasticsearch', 'REST APIs'],
+  },
+  { group: 'Front end', items: ['React', 'Next.js'] },
+  {
+    group: 'Architecture',
+    items: ['Serverless', 'microservices', 'event-driven', 'DDD', 'CQRS', 'BFF', 'monorepos'],
+  },
+  {
+    group: 'Cloud and tools',
+    items: ['AWS (serverless, VPC)', 'infrastructure as code', 'Docker', 'Linux', 'Git'],
+  },
+  { group: 'Testing and AI tools', items: ['Katalon', 'Claude Code', 'agent harnesses'] },
+  { group: 'Machine learning', items: ['PyTorch', 'speech recognition', 'information retrieval'] },
+];
+
+const career = (await getCollection('career', (e) => !e.data.draft)).sort((a, b) =>
+  b.data.start.localeCompare(a.data.start),
+);
+const entries = await Promise.all(
+  career.map(async (e) => ({ e, Content: (await render(e)).Content })),
+);
+const work = entries.filter(({ e }) => e.data.kind === 'work');
+const study = entries.filter(({ e }) => e.data.kind === 'study');
+const current = work.find(({ e }) => !e.data.end)?.e.data;
+const firstYear = Math.min(...work.map(({ e }) => Number(e.data.start.slice(0, 4))));
+
+const projects = (await getCollection('projects', (p) => !p.data.draft)).sort(
+  (a, b) => Number(b.data.featured) - Number(a.data.featured) || b.data.year - a.data.year,
+);
+
+const publications = (await getCollection('publications', (p) => !p.data.draft)).sort(
+  (a, b) => b.data.year - a.data.year || a.data.title.localeCompare(b.data.title),
+);
+
+// Learning: unfinished items first, then newest finished first.
+const items = (await getCollection('progress', (i) => !i.data.draft)).sort(
+  (a, b) =>
+    Number(a.data.value >= 100) - Number(b.data.value >= 100) ||
+    (b.data.finished ?? '').localeCompare(a.data.finished ?? '') ||
+    a.data.title.localeCompare(b.data.title),
+);
+const courses = items.filter((i) => i.data.kind !== 'book');
+const books = items.filter((i) => i.data.kind === 'book');
+
+const facts = [
+  {
+    num: new Date().getFullYear() - firstYear,
+    label: `years in tech, since ${firstYear}`,
+    href: '#experience',
+  },
+  { num: projects.length, label: 'public projects', href: '#projects' },
+  { num: publications.length, label: 'published papers', href: '#publications' },
+  { num: items.length, label: 'courses, certs and books', href: '#learning' },
+];
 ---
 
 <Base>
-  <section class="hero">
-    <div class="wrap hero-inner">
+  <section class="hero wrap" id="top">
+    <div class="hero-grid">
       <div class="hero-text">
-        <p class="oc-eyebrow">// hello, world</p>
-        <h1 class="hero-name">Hi, I'm {site.name}.</h1>
-        <p class="hero-role mono">{site.role}</p>
-        <p class="hero-tagline">{site.tagline}</p>
-        <div class="row hero-ctas">
-          <Button href="/projects/">see projects</Button>
-          <Button href={site.linkedin} variant="secondary" external>
-            linkedin
+        {current && (
+          <p class="oc-glass status rise">
+            <span class="pulse" aria-hidden="true"></span>
+            {current.title} at FDTE
+          </p>
+        )}
+        <h1 class="hero-name rise">
+          <span class="hero-hi">Hi, I'm</span>
+          Elias Cyrino <span class="berry-text">de Assis.</span>
+        </h1>
+        <p class="hero-lede rise">{heroLede}</p>
+        <div class="ctas rise">
+          <Button href="#projects" variant="primary">
+            See my work
+          </Button>
+          <Button href={site.linkedin} external>
+            LinkedIn
+          </Button>
+          <Button href={site.github} external>
+            GitHub
           </Button>
         </div>
       </div>
-      <div class="hero-art" aria-hidden="false">
-        <div class="hero-tone screentone" aria-hidden="true"></div>
-        <div class="hero-disc">
+      <div class="portrait rise">
+        <div class="portrait-ring" aria-hidden="true"></div>
+        <div class="portrait-photo">
           <Image
             src={portrait}
-            alt="Manga-style drawing of Elias in a straw hat and a leaf-green tunic"
+            alt="Manga-style drawing of Elias in a straw hat and a leaf tunic, with a cassis berry necklace"
             width={480}
             widths={[240, 480, 720]}
-            sizes="(min-width: 720px) 360px, 70vw"
+            sizes="(min-width: 900px) 400px, 72vw"
             loading="eager"
           />
         </div>
+        <div class="portrait-orbit" aria-hidden="true">
+          <BerryMark />
+        </div>
       </div>
+    </div>
+    <ul class="facts list-reset" aria-label="At a glance">
+      {facts.map((f) => (
+        <li>
+          <Card href={f.href} class="fact">
+            <span class="fact-num">{f.num}</span>
+            <span class="fact-label">{f.label}</span>
+          </Card>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <section class="section wrap" id="about">
+    <SectionHeader eyebrow="About" title="About me" />
+    <div class="about">
+      <Card class="prose reveal">
+        <p>
+          I'm a back-end developer at FDTE, working full time and remotely since 2023. I build
+          Node.js and TypeScript systems on AWS: serverless pipelines, event-driven services with
+          DDD and CQRS, and full-stack features with NestJS and Next.js. I also build the harnesses
+          that let Claude Code work within a project's standards.
+        </p>
+        <p>
+          I started in research. At Fundação CAEd, I built speech recognition tools that score how
+          children read aloud in large-scale literacy assessments. At UFJF, I worked on fake news
+          detection and search systems. That work led to 6 papers, including a first-author paper at
+          SBIE 2022.
+        </p>
+        <p>
+          Now I focus on back-end engineering, cloud and containers. In 2026 I earned the AWS
+          Certified Cloud Practitioner and finished four Full Cycle courses on Docker, containers
+          and AI agents.
+        </p>
+      </Card>
+      <Card class="reveal">
+        <h3 class="col-title">Skills</h3>
+        <dl class="skills-list">
+          {skills.map((g) => (
+            <div class="skills-group">
+              <dt>{g.group}</dt>
+              <dd>
+                <ul class="oc-tags list-reset">
+                  {g.items.map((item) => (
+                    <li>
+                      <Tag>{item}</Tag>
+                    </li>
+                  ))}
+                </ul>
+              </dd>
+            </div>
+          ))}
+        </dl>
+      </Card>
     </div>
   </section>
 
-  <section class="wrap section" id="about">
-    <SectionHeader eyebrow="about" title="About me" />
-    <div class="about">
-      <div class="prose">
-        <p>
-          I'm {site.fullName}, a back-end developer at FDTE. I have worked there remotely since
-          2023. I studied Computer Science at UFJF, in Juiz de Fora, Brazil.
-        </p>
-        <p>
-          Before that, I was an intern at Fundação CAEd. I worked on automatic speech recognition
-          for large-scale reading fluency assessment, with Python and PyTorch. At university I also
-          worked on machine learning and information retrieval projects.
-        </p>
-        <p>
-          Now I study cloud and containers (AWS, Docker) and software design. I log the courses and
-          books on the progress page.
-        </p>
+  <section class="section wrap" id="experience">
+    <SectionHeader
+      eyebrow="Experience"
+      title="Where I have worked and studied"
+      lede="Newest first."
+    />
+    <div class="cols">
+      <div>
+        <h3 class="col-title">Work</h3>
+        <ol class="oc-tl list-reset">
+          {work.map(({ e, Content }) => (
+            <TimelineEntry {...e.data}>
+              <Content />
+            </TimelineEntry>
+          ))}
+        </ol>
       </div>
       <div>
-        <p class="oc-eyebrow">// skills</p>
-        <ul class="row list-reset skills">
-          {skills.map((s) => (
-            <li>
-              <Tag>{s}</Tag>
-            </li>
+        <h3 class="col-title">Education</h3>
+        <ol class="oc-tl list-reset">
+          {study.map(({ e, Content }) => (
+            <TimelineEntry {...e.data}>
+              <Content />
+            </TimelineEntry>
           ))}
-        </ul>
+        </ol>
       </div>
     </div>
   </section>
 
-  <div class="band">
-    <section class="wrap section">
-      <SectionHeader eyebrow="projects" title="Featured work" />
-      <div class="grid">
-        {featured.map((p) => (
-          <Panel href={p.data.repo ?? p.data.url ?? '/projects/'} label="featured">
-            <h3 class="panel-title">{p.data.title}</h3>
-            <p class="panel-text">{p.data.summary}</p>
-            <ul class="row list-reset">
+  <section class="section wrap" id="projects">
+    <SectionHeader
+      eyebrow="Projects"
+      title="Things I have built"
+      lede="Each card opens the repo."
+    />
+    <ul class="grid-2 list-reset">
+      {projects.map((p) => (
+        <li>
+          <Card
+            href={p.data.repo ?? p.data.url}
+            external={!!(p.data.repo ?? p.data.url)}
+            class="reveal"
+          >
+            <p class="oc-meta">
+              <span>{p.data.year}</span>
+            </p>
+            <h3 class="oc-title oc-title-l">{p.data.title}</h3>
+            <p class="oc-text">{p.data.summary}</p>
+            <ul class="oc-tags list-reset">
               {p.data.tags.map((t) => (
                 <li>
                   <Tag>{t}</Tag>
                 </li>
               ))}
             </ul>
-          </Panel>
-        ))}
+            {(p.data.repo ?? p.data.url) && (
+              <span class="oc-card-cta">
+                {p.data.repo ? 'view the repo' : 'visit the site'} <span aria-hidden="true">↗</span>
+                <span class="sr-only">(opens in a new tab)</span>
+              </span>
+            )}
+          </Card>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <section class="section wrap" id="publications">
+    <SectionHeader
+      eyebrow="Publications"
+      title="Published papers"
+      lede="Published papers from my research at UFJF and Fundação CAEd. Each card opens the paper."
+    />
+    <ol class="grid-2 list-reset">
+      {publications.map((p) => (
+        <Publication {...p.data} />
+      ))}
+    </ol>
+  </section>
+
+  <section class="section wrap" id="learning">
+    <SectionHeader
+      eyebrow="Learning"
+      title="What I am learning"
+      lede="Certifications, courses and books, newest first. Each card opens the credential or the book."
+    />
+    <div class="learn-layout">
+      <div>
+        <h3 class="col-title">Courses and certifications</h3>
+        <ul class="learn-grid list-reset">
+          {courses.map((i) => (
+            <LearnCard {...i.data} />
+          ))}
+        </ul>
       </div>
       <div>
-        <Button href="/projects/" variant="ghost">
-          all projects →
+        <h3 class="col-title">Books</h3>
+        <ul class="learn-grid learn-grid-books list-reset">
+          {books.map((i) => (
+            <LearnCard {...i.data} />
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section wrap" id="contact">
+    <div class="oc-band reveal">
+      <BerryMark class="oc-band-berries" />
+      <p class="oc-eyebrow">Contact</p>
+      <h2 class="oc-section-title">Say hello</h2>
+      <p class="oc-lede">The fastest way to reach me is LinkedIn.</p>
+      <div class="ctas">
+        <Button href={site.linkedin} external>
+          LinkedIn
+        </Button>
+        <Button href={site.github} external>
+          GitHub
         </Button>
       </div>
-    </section>
-  </div>
-
-  <section class="wrap section" id="contact">
-    <SectionHeader
-      eyebrow="contact"
-      title="Say hello"
-      lede="The best way to reach me for now is LinkedIn."
-    />
-    <div>
-      <Button href={site.linkedin} external>
-        message me on linkedin
-      </Button>
     </div>
   </section>
 </Base>
-
-<style>
-  .hero {
-    border-bottom: 2px solid var(--border);
-    overflow: hidden;
-  }
-  .hero-inner {
-    display: grid;
-    gap: var(--space-8);
-    align-items: center;
-    padding-block: var(--space-12);
-  }
-  @media (min-width: 820px) {
-    .hero-inner {
-      grid-template-columns: 1.2fr 1fr;
-      padding-block: var(--space-16);
-    }
-  }
-  .hero-text {
-    display: grid;
-    gap: var(--space-4);
-    min-width: 0;
-  }
-  .hero-name {
-    margin: 0;
-    font: 400 clamp(40px, 7vw, 64px)/1.06 var(--font-display);
-    letter-spacing: -0.01em;
-  }
-  .hero-role {
-    margin: 0;
-    font-size: 15px;
-    color: var(--link);
-  }
-  .hero-tagline {
-    margin: 0;
-    max-width: 46ch;
-    color: var(--ink-muted);
-  }
-  .hero-ctas {
-    gap: var(--space-4);
-    margin-top: var(--space-2);
-  }
-  .hero-art {
-    position: relative;
-    justify-self: center;
-    width: min(100%, 360px);
-  }
-  .hero-tone {
-    position: absolute;
-    inset: -24px -24px auto auto;
-    width: 70%;
-    height: 70%;
-  }
-  .hero-disc {
-    position: relative;
-    aspect-ratio: 1;
-    max-width: 100%;
-    border-radius: var(--radius-full);
-    background: var(--olive);
-    border: 2px solid var(--border);
-    box-shadow: var(--shadow-panel);
-    overflow: hidden;
-  }
-  .hero-disc :global(img) {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  .about {
-    display: grid;
-    gap: var(--space-8);
-  }
-  @media (min-width: 820px) {
-    .about {
-      grid-template-columns: 2fr 1fr;
-    }
-  }
-  .skills {
-    list-style: none;
-    margin-top: var(--space-3);
-  }
-  .panel-title {
-    margin: 0 0 var(--space-2);
-    font: 600 20px/28px var(--font-sans);
-  }
-  .panel-text {
-    margin: 0 0 var(--space-4);
-    font: 400 15px/22px var(--font-sans);
-    color: var(--ink-muted);
-  }
-  ul.row {
-    list-style: none;
-  }
-</style>
