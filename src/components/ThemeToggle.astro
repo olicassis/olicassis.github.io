@@ -1,9 +1,9 @@
-<button class="theme-toggle" type="button" id="theme-toggle" aria-label="Switch colour theme">
-  <span class="theme-toggle-label">
-    theme: <span data-theme-name>auto</span>
-  </span>
+<button class="oc-theme" type="button" id="theme-toggle" aria-label="Switch colour theme">
+  <span aria-hidden="true">◐</span>
+  <span data-theme-name>auto</span>
 </button>
 <script is:inline>
+  // Theme toggle: auto, light, dark. The choice is kept in localStorage.
   (() => {
     const order = ['auto', 'light', 'dark'];
     const root = document.documentElement;
@@ -28,21 +28,3 @@
     });
   })();
 </script>
-<style>
-  .theme-toggle {
-    font: 500 13px/18px var(--font-mono);
-    color: var(--ink-muted);
-    background: none;
-    border: 0;
-    padding: var(--space-2);
-    cursor: pointer;
-  }
-  .theme-toggle:hover {
-    color: var(--ink);
-    background: var(--husk);
-  }
-  .theme-toggle:focus-visible {
-    outline: 2px solid var(--focus);
-    outline-offset: 2px;
-  }
-</style>

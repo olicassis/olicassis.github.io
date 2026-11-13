@@ -9,4 +9,5 @@ authors:
   ]
 venue: "WebMedia '21: Brazilian Symposium on Multimedia and the Web (ACM)"
 year: 2021
+url: 'https://sol.sbc.org.br/index.php/webmedia/article/view/17506'
 ---

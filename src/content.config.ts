@@ -31,15 +31,19 @@ const career = defineCollection({
 
 const progress = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/progress' }),
-  schema: z.object({
-    kind: z.enum(['course', 'certification', 'book']),
-    title: z.string(),
-    by: z.string().optional(),
-    value: z.number().min(0).max(100),
-    finished: z.string().optional(),
-    url: z.string().url().optional(),
-    draft: z.boolean().default(false),
-  }),
+  schema: ({ image }) =>
+    z.object({
+      kind: z.enum(['course', 'certification', 'book']),
+      title: z.string(),
+      by: z.string().optional(),
+      value: z.number().min(0).max(100),
+      finished: z.string().optional(),
+      url: z.string().url().optional(),
+      // Certificate, badge or book cover, stored in src/assets/learning/.
+      image: image().optional(),
+      imageAlt: z.string().optional(),
+      draft: z.boolean().default(false),
+    }),
 });
 
 const publications = defineCollection({
