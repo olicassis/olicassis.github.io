@@ -249,13 +249,13 @@ p {
   }
 }
 .hero-name {
-  font: 800 clamp(64px, 18vw, 128px) / 0.92 var(--font-display);
+  font: 800 clamp(48px, 12vw, 96px) / 0.95 var(--font-display);
   letter-spacing: -0.045em;
 }
 .hero-hi {
   display: block;
   margin-bottom: 0.18em;
-  font-size: 0.34em;
+  font-size: 0.42em;
   font-weight: 500;
   letter-spacing: -0.02em;
   color: var(--ink-muted);
@@ -384,10 +384,31 @@ p {
   display: grid;
   gap: var(--space-5);
 }
-@media (min-width: 900px) {
-  .about {
-    grid-template-columns: 1.6fr 1fr;
+.skills-list {
+  display: grid;
+  gap: var(--space-4);
+  margin: 0;
+}
+@media (min-width: 720px) {
+  .skills-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+}
+@media (min-width: 1000px) {
+  .skills-list {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+.skills-group {
+  display: grid;
+  align-content: start;
+  gap: var(--space-2);
+}
+.skills-group dt {
+  font: 600 15px/1.35 var(--font-sans);
+}
+.skills-group dd {
+  margin: 0;
 }
 .prose p {
   max-width: 62ch;

@@ -13,7 +13,27 @@ import TimelineEntry from '../components/TimelineEntry.astro';
 import portrait from '../assets/me_manga.jpg';
 import { site } from '../site';
 
-const skills = ['python', 'typescript', 'node.js', 'docker', 'aws', 'pytorch', 'linux', 'git'];
+const heroLede =
+  'I build Node.js and TypeScript systems on AWS at FDTE. Before that, I worked on speech recognition and search research, and published 6 papers.';
+
+const skills = [
+  { group: 'Languages', items: ['TypeScript', 'JavaScript', 'Python'] },
+  {
+    group: 'Back end',
+    items: ['Node.js', 'NestJS', 'PostgreSQL', 'DynamoDB', 'Elasticsearch', 'REST APIs'],
+  },
+  { group: 'Front end', items: ['React', 'Next.js'] },
+  {
+    group: 'Architecture',
+    items: ['Serverless', 'microservices', 'event-driven', 'DDD', 'CQRS', 'BFF', 'monorepos'],
+  },
+  {
+    group: 'Cloud and tools',
+    items: ['AWS (serverless, VPC)', 'infrastructure as code', 'Docker', 'Linux', 'Git'],
+  },
+  { group: 'Testing and AI tools', items: ['Katalon', 'Claude Code', 'agent harnesses'] },
+  { group: 'Machine learning', items: ['PyTorch', 'speech recognition', 'information retrieval'] },
+];
 
 const career = (await getCollection('career', (e) => !e.data.draft)).sort((a, b) =>
   b.data.start.localeCompare(a.data.start),
@@ -68,12 +88,12 @@ const facts = [
         )}
         <h1 class="hero-name rise">
           <span class="hero-hi">Hi, I'm</span>
-          <span class="berry-text">{site.name}.</span>
+          Elias Cyrino <span class="berry-text">de Assis.</span>
         </h1>
-        <p class="hero-lede rise">{site.tagline}</p>
+        <p class="hero-lede rise">{heroLede}</p>
         <div class="ctas rise">
           <Button href="#projects" variant="primary">
-            See projects
+            See my work
           </Button>
           <Button href={site.linkedin} external>
             LinkedIn
@@ -117,28 +137,41 @@ const facts = [
     <div class="about">
       <Card class="prose reveal">
         <p>
-          I'm {site.fullName}, a back-end developer at FDTE. I have worked there remotely since
-          2023. I studied Computer Science at UFJF, in Juiz de Fora, Brazil.
+          I'm a back-end developer at FDTE, working full time and remotely since 2023. I build
+          Node.js and TypeScript systems on AWS: serverless pipelines, event-driven services with
+          DDD and CQRS, and full-stack features with NestJS and Next.js. I also build the harnesses
+          that let Claude Code work within a project's standards.
         </p>
         <p>
-          Before that, I was an intern at Fundação CAEd. I worked on automatic speech recognition
-          for large-scale reading fluency assessment, with Python and PyTorch. At university I also
-          worked on machine learning and information retrieval projects.
+          I started in research. At Fundação CAEd, I built speech recognition tools that score how
+          children read aloud in large-scale literacy assessments. At UFJF, I worked on fake news
+          detection and search systems. That work led to 6 papers, including a first-author paper at
+          SBIE 2022.
         </p>
         <p>
-          Now I study cloud and containers (AWS, Docker) and software design. I log the courses and
-          books in the <a href="#learning">learning</a> section.
+          Now I focus on back-end engineering, cloud and containers. In 2026 I earned the AWS
+          Certified Cloud Practitioner and finished four Full Cycle courses on Docker, containers
+          and AI agents.
         </p>
       </Card>
       <Card class="reveal">
         <h3 class="col-title">Skills</h3>
-        <ul class="oc-tags list-reset">
-          {skills.map((s) => (
-            <li>
-              <Tag>{s}</Tag>
-            </li>
+        <dl class="skills-list">
+          {skills.map((g) => (
+            <div class="skills-group">
+              <dt>{g.group}</dt>
+              <dd>
+                <ul class="oc-tags list-reset">
+                  {g.items.map((item) => (
+                    <li>
+                      <Tag>{item}</Tag>
+                    </li>
+                  ))}
+                </ul>
+              </dd>
+            </div>
           ))}
-        </ul>
+        </dl>
       </Card>
     </div>
   </section>
@@ -215,7 +248,7 @@ const facts = [
     <SectionHeader
       eyebrow="Publications"
       title="Published papers"
-      lede="From my research at UFJF and Fundação CAEd. Each card opens the paper."
+      lede="Published papers from my research at UFJF and Fundação CAEd. Each card opens the paper."
     />
     <ol class="grid-2 list-reset">
       {publications.map((p) => (
@@ -228,7 +261,7 @@ const facts = [
     <SectionHeader
       eyebrow="Learning"
       title="What I am learning"
-      lede="Courses, certifications and books, newest first. Each card opens the certificate or the book."
+      lede="Certifications, courses and books, newest first. Each card opens the credential or the book."
     />
     <div class="learn-layout">
       <div>
@@ -255,10 +288,10 @@ const facts = [
       <BerryMark class="oc-band-berries" />
       <p class="oc-eyebrow">Contact</p>
       <h2 class="oc-section-title">Say hello</h2>
-      <p class="oc-lede">The best way to reach me for now is LinkedIn.</p>
+      <p class="oc-lede">The fastest way to reach me is LinkedIn.</p>
       <div class="ctas">
         <Button href={site.linkedin} external>
-          Message me on LinkedIn
+          LinkedIn
         </Button>
         <Button href={site.github} external>
           GitHub

@@ -246,6 +246,19 @@
 .oc-tl-card .oc-text p {
   margin: 0;
 }
+.oc-tl-card .oc-text * + p,
+.oc-tl-card .oc-text * + ul {
+  margin-top: var(--space-2);
+}
+.oc-tl-card .oc-text ul {
+  display: grid;
+  gap: var(--space-1);
+  margin-bottom: 0;
+  padding-left: 1.1em;
+}
+.oc-tl-card .oc-text li::marker {
+  color: var(--juice);
+}
 
 /* LearnCard (LearnCard.astro): a row on phones, a tile from 720px */
 .oc-learn {
