@@ -186,6 +186,43 @@
   max-width: 65ch;
 }
 
+/* Publication */
+.oc-pub {
+  list-style: none;
+  display: grid;
+  gap: var(--space-1);
+  padding: var(--space-4) 0;
+  border-bottom: 1px solid var(--hairline);
+  max-width: 65ch;
+}
+.oc-pub:first-child {
+  padding-top: 0;
+}
+.oc-pub p {
+  margin: 0;
+}
+.oc-pub-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  font: 500 13px/18px var(--font-mono);
+}
+.oc-pub-year {
+  color: var(--link);
+  font-variant-numeric: tabular-nums;
+}
+.oc-pub-venue {
+  color: var(--ink-muted);
+}
+.oc-pub-title {
+  font: 600 17px/24px var(--font-sans);
+  overflow-wrap: anywhere;
+}
+.oc-pub-authors {
+  font: 400 15px/22px var(--font-sans);
+  color: var(--ink-muted);
+}
+
 /* ProgressItem */
 .oc-prog {
   list-style: none;

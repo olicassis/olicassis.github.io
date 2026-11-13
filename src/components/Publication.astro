@@ -1,0 +1,27 @@
+---
+interface Props {
+  title: string;
+  authors: string[];
+  venue: string;
+  year: number;
+  url?: string;
+}
+const { title, authors, venue, year, url } = Astro.props;
+---
+
+<li class="oc-pub">
+  <p class="oc-pub-meta">
+    <span class="oc-pub-year">{year}</span>
+    <span class="oc-pub-venue">{venue}</span>
+  </p>
+  <p class="oc-pub-title">
+    {url ? (
+      <a href={url} target="_blank" rel="noopener">
+        {title} <span aria-hidden="true">↗</span>
+      </a>
+    ) : (
+      title
+    )}
+  </p>
+  <p class="oc-pub-authors">{authors.join(', ')}</p>
+</li>
