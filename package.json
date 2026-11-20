@@ -22,7 +22,7 @@
     "prepare": "husky && git config commit.template .gitmessage || true"
   },
   "dependencies": {
-    "astro": "7.4.4"
+    "astro": "7.4.12"
   },
   "devDependencies": {
     "@astrojs/check": "0.9.12",
